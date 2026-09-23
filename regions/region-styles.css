@@ -1,0 +1,89 @@
+:root {
+  --forest: #12372a;
+  --forest-deep: #0b2b20;
+  --leaf: #a9c52f;
+  --paper: #f6f3ea;
+  --cream: #ebe4d4;
+  --ink: #17211c;
+  --muted: #657068;
+  --white: #fff;
+  --line: rgba(18, 55, 42, .16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Noto Sans KR", sans-serif; line-height: 1.7; }
+a { color: inherit; text-decoration: none; }
+.region-header { display: flex; height: 84px; align-items: center; justify-content: space-between; padding: 0 clamp(24px, 6vw, 90px); color: var(--white); background: var(--forest-deep); }
+.brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 700; line-height: 1.2; }
+.brand-mark { display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-family: "Gowun Batang", serif; font-size: 18px; }
+.brand small { display: block; margin-top: 3px; font-size: 9px; font-weight: 500; letter-spacing: .22em; opacity: .7; }
+.region-nav { display: flex; align-items: center; gap: 28px; font-size: 13px; }
+.region-nav .call-link { border: 1px solid rgba(255,255,255,.5); padding: 8px 14px; }
+.breadcrumb { max-width: 1180px; margin: 0 auto; padding: 22px 28px; color: var(--muted); font-size: 12px; }
+.breadcrumb span { margin: 0 9px; color: #a3aaa5; }
+.area-hero { position: relative; overflow: hidden; padding: 105px max(28px, calc((100vw - 1120px) / 2)) 115px; color: var(--white); background: var(--forest); }
+.area-hero::after { position: absolute; right: -7%; bottom: -55%; width: 430px; height: 430px; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; box-shadow: 0 0 0 70px rgba(255,255,255,.025), 0 0 0 140px rgba(255,255,255,.018); content: ""; }
+.eyebrow { margin: 0 0 18px; color: var(--leaf); font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+.area-hero h1 { position: relative; z-index: 1; max-width: 850px; margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(38px, 5vw, 66px); line-height: 1.28; letter-spacing: 0; word-break: keep-all; }
+.area-hero h1 em { color: #d6e875; font-style: normal; }
+.area-hero > p:not(.eyebrow) { position: relative; z-index: 1; max-width: 650px; margin: 25px 0 0; color: rgba(255,255,255,.75); }
+.hero-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 35px; }
+.button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 0 24px; font-weight: 700; }
+.button-primary { color: var(--forest-deep); background: var(--leaf); }
+.button-outline { border: 1px solid rgba(255,255,255,.55); color: var(--white); }
+.content-section { max-width: 1180px; margin: 0 auto; padding: 105px 28px; }
+.section-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 9vw; align-items: end; }
+.section-intro h2, .category-title { margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.35; letter-spacing: 0; }
+.section-intro > div:last-child { color: var(--muted); }
+.section-intro strong { color: var(--ink); }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 65px; border-top: 1px solid var(--line); }
+.feature { min-height: 230px; padding: 34px 28px 25px 0; border-right: 1px solid var(--line); }
+.feature + .feature { padding-left: 28px; }
+.feature:last-child { border-right: 0; }
+.feature span { color: #82920f; font-size: 11px; font-weight: 700; }
+.feature h3 { margin: 30px 0 10px; font-size: 20px; }
+.feature p { margin: 0; color: var(--muted); font-size: 14px; }
+.trial-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 45px; padding: 75px max(28px, calc((100vw - 1120px) / 2)); color: var(--white); background: var(--forest-deep); }
+.trial-band h2 { margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(30px, 3.5vw, 44px); letter-spacing: 0; }
+.trial-band p { margin: 12px 0 0; color: rgba(255,255,255,.64); }
+.trial-actions { display: flex; gap: 12px; }
+.other-areas { max-width: 1180px; margin: 0 auto; padding: 70px 28px; }
+.other-areas h2 { margin: 0 0 26px; font-size: 18px; }
+.area-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.area-links a { border: 1px solid var(--line); padding: 10px 17px; background: var(--white); font-size: 13px; }
+.area-links a[aria-current="page"] { color: var(--white); background: var(--forest); }
+.category-hero { padding: 90px 28px; text-align: center; }
+.category-hero .eyebrow { margin-bottom: 14px; }
+.category-hero p:last-child { color: var(--muted); }
+.category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 1050px; margin: 0 auto; padding: 0 28px 110px; }
+.category-card { display: grid; min-height: 240px; align-content: space-between; border: 1px solid var(--line); padding: 30px; background: var(--white); transition: transform .2s, color .2s, background .2s; }
+.category-card:last-child { grid-column: 1 / -1; }
+.category-card span { color: #8b958e; font-size: 11px; }
+.category-card strong { font-family: "Gowun Batang", serif; font-size: 28px; }
+.category-card small { color: var(--muted); }
+.category-card:hover { color: var(--white); background: var(--forest); transform: translateY(-3px); }
+.category-card:hover span, .category-card:hover small { color: rgba(255,255,255,.7); }
+.region-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 38px clamp(24px, 6vw, 90px); color: rgba(255,255,255,.62); background: #071b14; font-size: 11px; }
+.region-footer .brand { color: var(--white); }
+
+@media (max-width: 760px) {
+  .region-header { height: 72px; }
+  .region-nav a:not(.call-link) { display: none; }
+  .region-nav { gap: 0; }
+  .region-nav .call-link { font-size: 11px; }
+  .breadcrumb { padding: 16px 22px; }
+  .area-hero { padding: 75px 24px 85px; }
+  .section-intro { grid-template-columns: 1fr; gap: 24px; }
+  .content-section { padding: 80px 24px; }
+  .feature-grid { grid-template-columns: 1fr; margin-top: 45px; }
+  .feature, .feature + .feature { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 0; }
+  .feature h3 { margin-top: 16px; }
+  .trial-band { grid-template-columns: 1fr; padding: 65px 24px; }
+  .trial-actions { flex-direction: column; }
+  .category-hero { padding: 75px 24px 55px; }
+  .category-grid { grid-template-columns: 1fr; padding: 0 24px 80px; }
+  .category-card:last-child { grid-column: auto; }
+  .category-card { min-height: 190px; }
+  .region-footer { align-items: flex-start; flex-direction: column; }
+}
