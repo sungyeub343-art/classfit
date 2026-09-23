@@ -148,11 +148,15 @@
           <p><strong>상담은 부담 없이 진행됩니다.</strong><br>수업 결정 전 충분히 비교하고 고민하셔도 괜찮습니다.</p>
         </div>
       </div>
-      <form class="consult-form" id="consult-form" novalidate>
+      <form class="consult-form" id="consult-form" action="https://formsubmit.co/sungyeub343@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="[classfit.kr] 수학과외 상담 신청">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://classfit.kr/?submitted=true#consult">
+        <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
         <div class="form-row">
-          <label>학생 이름<input type="text" name="studentName" autocomplete="name" placeholder="이름" required></label>
+          <label>학생 이름<input type="text" name="학생 이름" autocomplete="name" placeholder="이름" required></label>
           <label>학년
-            <select name="grade" required>
+            <select name="학년" required>
               <option value="">선택해 주세요</option>
               <option>초등 1~3학년</option><option>초등 4~6학년</option>
               <option>중학교 1학년</option><option>중학교 2학년</option><option>중학교 3학년</option>
@@ -160,9 +164,10 @@
             </select>
           </label>
         </div>
-        <label>보호자 연락처<input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required></label>
-        <label>상담 내용<textarea name="message" rows="4" placeholder="현재 학습 고민이나 원하는 수업 방향을 적어주세요."></textarea></label>
-        <label class="agreement"><input type="checkbox" name="privacy" required><span>상담을 위한 개인정보 수집 및 이용에 동의합니다.</span></label>
+        <label>보호자 연락처<input type="tel" name="보호자 연락처" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required></label>
+        <label>도로명주소 <span class="field-note">동·호수까지 기재해 주세요.</span><input type="text" name="도로명주소" autocomplete="street-address" placeholder="예: 울산광역시 중구 ○○로 00, 000동 000호" required></label>
+        <label>상담 내용<textarea name="상담 내용" rows="4" placeholder="현재 학습 고민이나 원하는 수업 방향을 적어주세요."></textarea></label>
+        <label class="agreement"><input type="checkbox" name="개인정보 수집 동의" value="동의" required><span>상담 및 회신을 위한 개인정보 수집·이용과 이메일 전송에 동의합니다.</span></label>
         <button class="button button-submit" type="submit">상담 신청하기 <span aria-hidden="true">→</span></button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>

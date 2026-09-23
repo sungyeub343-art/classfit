@@ -1,7 +1,3 @@
-const siteConfig = {
-  consultationPhone: "01029283614",
-};
-
 const gradeContent = {
   elementary: {
     kicker: "수학 자신감의 시작",
@@ -62,21 +58,16 @@ const consultationForm = document.querySelector("#consult-form");
 const formStatus = consultationForm.querySelector(".form-status");
 
 consultationForm.addEventListener("submit", (event) => {
-  event.preventDefault();
   if (!consultationForm.checkValidity()) {
+    event.preventDefault();
     consultationForm.reportValidity();
     return;
   }
-
-  if (!siteConfig.consultationPhone) {
-    formStatus.textContent = "현재 상담 연락처를 준비 중입니다. 연락처 등록 후 신청 기능이 활성화됩니다.";
-    return;
-  }
-
-  const data = new FormData(consultationForm);
-  const message = `[수학과외 상담 신청]\n학생: ${data.get("studentName")}\n학년: ${data.get("grade")}\n보호자 연락처: ${data.get("phone")}\n상담 내용: ${data.get("message") || "없음"}`;
-  window.location.href = `sms:${siteConfig.consultationPhone}?body=${encodeURIComponent(message)}`;
-  formStatus.textContent = "문자 앱에서 상담 내용을 확인해 주세요.";
+  formStatus.textContent = "상담 내용을 전송하고 있습니다.";
 });
+
+if (new URLSearchParams(window.location.search).get("submitted") === "true") {
+  formStatus.textContent = "상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.";
+}
 
 document.querySelector("#year").textContent = new Date().getFullYear();

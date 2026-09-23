@@ -108,8 +108,10 @@ button { color: inherit; }
 .consult-note p { margin: 0; color: rgba(255,255,255,.62); font-size: 13px; }
 .consult-note strong { color: var(--white); font-size: 14px; }
 .consult-form { display: grid; gap: 22px; align-content: center; }
+.form-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .consult-form label:not(.agreement) { display: grid; gap: 8px; color: rgba(255,255,255,.75); font-size: 12px; font-weight: 600; }
+.field-note { color: rgba(255,255,255,.48); font-weight: 400; }
 .consult-form input, .consult-form select, .consult-form textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(255,255,255,.3); border-radius: 0; padding: 12px 2px; color: var(--white); background: transparent; outline: none; }
 .consult-form input:focus, .consult-form select:focus, .consult-form textarea:focus { border-color: var(--leaf); }
 .consult-form option { color: var(--ink); background: var(--white); }
