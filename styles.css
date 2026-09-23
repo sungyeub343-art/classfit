@@ -21,7 +21,7 @@ button { color: inherit; }
 .site-header { position: absolute; z-index: 10; top: 0; left: 0; display: flex; width: 100%; height: 96px; align-items: center; justify-content: space-between; padding: 0 clamp(24px, 5vw, 80px); color: var(--white); border-bottom: 1px solid rgba(255,255,255,.22); }
 .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .brand small { display: block; margin-top: 4px; font-size: 10px; font-weight: 500; letter-spacing: .28em; opacity: .72; }
-.brand-mark { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-family: "Gowun Batang", serif; font-size: 20px; }
+.brand-mark { display: block; width: 42px; height: 42px; flex: 0 0 auto; }
 .primary-nav { display: flex; align-items: center; gap: clamp(24px, 3vw, 52px); font-size: 14px; font-weight: 500; }
 .primary-nav a:not(.nav-cta) { position: relative; }
 .primary-nav a:not(.nav-cta)::after { position: absolute; bottom: -9px; left: 0; width: 0; height: 1px; background: var(--white); content: ""; transition: width .25s ease; }

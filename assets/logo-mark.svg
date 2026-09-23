@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>동화세상에듀코 로고</title>
+  <rect width="64" height="64" rx="16" fill="#12372a"/>
+  <path d="M12 17.5c7.7-.2 14 2.4 20 8.3v25c-5.4-5.1-11.8-7.5-20-7.3v-26Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path d="M52 17.5c-7.7-.2-14 2.4-20 8.3v25c5.4-5.1 11.8-7.5 20-7.3v-26Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path d="m18 37 7-7 6 5 12-13" fill="none" stroke="#c7df42" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+  <path d="M37.5 22H43v5.5" fill="none" stroke="#c7df42" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+</svg>

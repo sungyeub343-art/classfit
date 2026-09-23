@@ -16,7 +16,7 @@ body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Not
 a { color: inherit; text-decoration: none; }
 .region-header { display: flex; height: 84px; align-items: center; justify-content: space-between; padding: 0 clamp(24px, 6vw, 90px); color: var(--white); background: var(--forest-deep); }
 .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 700; line-height: 1.2; }
-.brand-mark { display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-family: "Gowun Batang", serif; font-size: 18px; }
+.brand-mark { display: block; width: 39px; height: 39px; flex: 0 0 auto; }
 .brand small { display: block; margin-top: 3px; font-size: 9px; font-weight: 500; letter-spacing: .22em; opacity: .7; }
 .region-nav { display: flex; align-items: center; gap: 28px; font-size: 13px; }
 .region-nav .call-link { border: 1px solid rgba(255,255,255,.5); padding: 8px 14px; }
