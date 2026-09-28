@@ -44,6 +44,14 @@ a { color: inherit; text-decoration: none; }
 .feature span { color: #82920f; font-size: 11px; font-weight: 700; }
 .feature h3 { margin: 30px 0 10px; font-size: 20px; }
 .feature p { margin: 0; color: var(--muted); font-size: 14px; }
+.subarea-section { max-width: 1180px; margin: 0 auto; padding: 0 28px 105px; }
+.subarea-section h2 { margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(28px, 3.2vw, 40px); letter-spacing: 0; }
+.subarea-section > p { margin: 12px 0 32px; color: var(--muted); }
+.subarea-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.subarea-grid a { display: flex; min-height: 74px; align-items: center; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0 18px; background: var(--white); font-size: 14px; font-weight: 600; }
+.subarea-grid a::after { color: #879217; content: "→"; }
+.subarea-grid a:hover { color: var(--white); background: var(--forest); }
+.subarea-grid a:hover::after { color: var(--leaf); }
 .trial-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 45px; padding: 75px max(28px, calc((100vw - 1120px) / 2)); color: var(--white); background: var(--forest-deep); }
 .trial-band h2 { margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(30px, 3.5vw, 44px); letter-spacing: 0; }
 .trial-band p { margin: 12px 0 0; color: rgba(255,255,255,.64); }
@@ -79,6 +87,9 @@ a { color: inherit; text-decoration: none; }
   .feature-grid { grid-template-columns: 1fr; margin-top: 45px; }
   .feature, .feature + .feature { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 0; }
   .feature h3 { margin-top: 16px; }
+  .subarea-section { padding: 0 24px 80px; }
+  .subarea-grid { grid-template-columns: repeat(2, 1fr); }
+  .subarea-grid a { min-height: 64px; padding: 0 14px; }
   .trial-band { grid-template-columns: 1fr; padding: 65px 24px; }
   .trial-actions { flex-direction: column; }
   .category-hero { padding: 75px 24px 55px; }
