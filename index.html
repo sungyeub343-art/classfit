@@ -33,6 +33,26 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <dialog class="region-selector" id="region-selector" aria-labelledby="region-selector-title" aria-describedby="region-selector-description">
+    <form method="dialog">
+      <button class="region-selector-close" type="submit" aria-label="지역 선택 창 닫기">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </form>
+    <p class="region-selector-eyebrow">REGION SELECT</p>
+    <h2 id="region-selector-title">어느 지역의<br>수학과외를 찾으시나요?</h2>
+    <p id="region-selector-description">거주 지역을 선택하면 해당 지역 안내로 바로 이동합니다.</p>
+    <div class="region-selector-grid">
+      <a href="regions/jung-gu.html"><span>01</span><strong>울산 중구</strong><i aria-hidden="true">↗</i></a>
+      <a href="regions/nam-gu.html"><span>02</span><strong>울산 남구</strong><i aria-hidden="true">↗</i></a>
+      <a href="regions/dong-gu.html"><span>03</span><strong>울산 동구</strong><i aria-hidden="true">↗</i></a>
+      <a href="regions/buk-gu.html"><span>04</span><strong>울산 북구</strong><i aria-hidden="true">↗</i></a>
+      <a href="regions/ulju-gun.html"><span>05</span><strong>울주군</strong><i aria-hidden="true">↗</i></a>
+    </div>
+    <a class="region-selector-all" href="regions/">울산 전체 지역 안내 보기 <span aria-hidden="true">→</span></a>
+  </dialog>
+
   <header class="site-header" id="top">
     <a class="brand" href="#top" aria-label="울산 수학과외 홈">
       <img class="brand-mark" src="assets/logo-mark.svg" alt="">

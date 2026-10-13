@@ -21,6 +21,12 @@ const gradeContent = {
 
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".primary-nav");
+const regionSelector = document.querySelector("#region-selector");
+const searchParams = new URLSearchParams(window.location.search);
+
+if (searchParams.get("submitted") !== "true") {
+  regionSelector.showModal();
+}
 
 menuButton.addEventListener("click", () => {
   const isOpen = menuButton.getAttribute("aria-expanded") === "true";
@@ -66,7 +72,7 @@ consultationForm.addEventListener("submit", (event) => {
   formStatus.textContent = "상담 내용을 전송하고 있습니다.";
 });
 
-if (new URLSearchParams(window.location.search).get("submitted") === "true") {
+if (searchParams.get("submitted") === "true") {
   formStatus.textContent = "상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.";
 }
 
