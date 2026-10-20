@@ -123,27 +123,14 @@ button { color: inherit; }
 .region-card:hover span, .region-card:hover small { color: rgba(255,255,255,.7); }
 .region-all-link { display: block; width: max-content; margin: 35px 0 0 auto; border-bottom: 1px solid var(--forest); padding-bottom: 6px; font-size: 13px; font-weight: 700; }
 
-.consult { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(60px, 10vw, 160px); padding: 120px clamp(24px, 10vw, 170px); color: var(--white); background: var(--forest-deep); }
+.consult { padding: 120px clamp(24px, 10vw, 170px); color: var(--white); background: var(--forest-deep); }
+.consult-copy { max-width: 680px; }
 .consult-copy > p:not(.eyebrow) { max-width: 450px; margin-top: 24px; color: rgba(255,255,255,.65); }
+.consult-call { gap: 12px; margin-top: 36px; }
 .consult-note { display: flex; gap: 14px; margin-top: 52px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,.18); }
 .consult-note > span { display: grid; width: 29px; height: 29px; flex: 0 0 auto; place-items: center; border: 1px solid var(--leaf); border-radius: 50%; color: var(--leaf); font-size: 12px; }
 .consult-note p { margin: 0; color: rgba(255,255,255,.62); font-size: 13px; }
 .consult-note strong { color: var(--white); font-size: 14px; }
-.consult-form { display: grid; gap: 22px; align-content: center; }
-.form-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.consult-form label:not(.agreement) { display: grid; gap: 8px; color: rgba(255,255,255,.75); font-size: 12px; font-weight: 600; }
-.field-note { color: rgba(255,255,255,.48); font-weight: 400; }
-.consult-form input, .consult-form select, .consult-form textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(255,255,255,.3); border-radius: 0; padding: 12px 2px; color: var(--white); background: transparent; outline: none; }
-.consult-form input:focus, .consult-form select:focus, .consult-form textarea:focus { border-color: var(--leaf); }
-.consult-form option { color: var(--ink); background: var(--white); }
-.consult-form textarea { resize: vertical; }
-.consult-form ::placeholder { color: rgba(255,255,255,.35); }
-.agreement { display: flex; align-items: center; gap: 9px; color: rgba(255,255,255,.6); font-size: 12px; cursor: pointer; }
-.agreement input { width: 16px; height: 16px; accent-color: var(--leaf); }
-.button-submit { justify-content: space-between; margin-top: 6px; color: var(--forest-deep); background: var(--leaf); }
-.button-submit:hover { background: #bfdc3f; }
-.form-status { min-height: 24px; margin: -10px 0 0; color: #e5ecbd; font-size: 12px; }
 
 .site-footer { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 50px; padding: 52px clamp(24px, 5vw, 80px); color: rgba(255,255,255,.65); background: #071b14; font-size: 11px; }
 .footer-brand { color: var(--white); }
@@ -180,7 +167,6 @@ button { color: inherit; }
   .region-grid { grid-template-columns: repeat(2, 1fr); }
   .region-card { border-bottom: 1px solid var(--line); }
   .region-card:nth-child(2n) { border-right: 0; }
-  .consult { grid-template-columns: 1fr; }
   .site-footer { grid-template-columns: 1fr 1fr; }
   .copyright { grid-column: 1 / -1; }
 }
@@ -220,9 +206,8 @@ button { color: inherit; }
   .regions-heading > p:last-child { margin-top: 18px; }
   .region-grid { grid-template-columns: 1fr; margin-top: 40px; }
   .region-card { min-height: 165px; border-right: 0; }
-  .consult { gap: 54px; padding: 90px 24px; }
+  .consult { padding: 90px 24px; }
   .consult-note { margin-top: 35px; }
-  .form-row { grid-template-columns: 1fr; gap: 22px; }
   .site-footer { grid-template-columns: 1fr; gap: 28px; padding-bottom: 110px; }
   .copyright { grid-column: auto; white-space: normal; }
   .floating-consult { display: grid; }

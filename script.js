@@ -22,11 +22,7 @@ const gradeContent = {
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".primary-nav");
 const regionSelector = document.querySelector("#region-selector");
-const searchParams = new URLSearchParams(window.location.search);
-
-if (searchParams.get("submitted") !== "true") {
-  regionSelector.showModal();
-}
+regionSelector.showModal();
 
 menuButton.addEventListener("click", () => {
   const isOpen = menuButton.getAttribute("aria-expanded") === "true";
@@ -59,21 +55,5 @@ document.querySelectorAll("[data-grade]").forEach((tab) => {
     `;
   });
 });
-
-const consultationForm = document.querySelector("#consult-form");
-const formStatus = consultationForm.querySelector(".form-status");
-
-consultationForm.addEventListener("submit", (event) => {
-  if (!consultationForm.checkValidity()) {
-    event.preventDefault();
-    consultationForm.reportValidity();
-    return;
-  }
-  formStatus.textContent = "상담 내용을 전송하고 있습니다.";
-});
-
-if (searchParams.get("submitted") === "true") {
-  formStatus.textContent = "상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.";
-}
 
 document.querySelector("#year").textContent = new Date().getFullYear();
