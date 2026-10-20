@@ -34,7 +34,7 @@ a { color: inherit; text-decoration: none; }
 .button-outline { border: 1px solid rgba(255,255,255,.55); color: var(--white); }
 .content-section { max-width: 1180px; margin: 0 auto; padding: 105px 28px; }
 .section-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 9vw; align-items: end; }
-.section-intro h2, .category-title { margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.35; letter-spacing: 0; }
+.section-intro h2, .category-title { margin: 0; word-break: keep-all; font-family: "Gowun Batang", serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.35; letter-spacing: 0; }
 .section-intro > div:last-child { color: var(--muted); }
 .section-intro strong { color: var(--ink); }
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 65px; border-top: 1px solid var(--line); }
@@ -52,6 +52,28 @@ a { color: inherit; text-decoration: none; }
 .subarea-grid a::after { color: #879217; content: "→"; }
 .subarea-grid a:hover { color: var(--white); background: var(--forest); }
 .subarea-grid a:hover::after { color: var(--leaf); }
+.grade-section { max-width: 1180px; margin: 0 auto; padding: 0 28px 105px; }
+.grade-section h2, .check-section h2, .faq-section h2, .trial-band h2 { margin: 0; word-break: keep-all; font-family: "Gowun Batang", serif; font-size: clamp(28px, 3.2vw, 40px); letter-spacing: 0; }
+.grade-section > p { margin: 12px 0 32px; color: var(--muted); }
+.grade-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grade-card { display: grid; min-height: 190px; align-content: space-between; gap: 18px; border: 1px solid var(--line); padding: 28px; background: var(--white); transition: transform .2s, color .2s, background .2s; }
+.grade-card span { color: #82920f; font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.grade-card strong { font-family: "Gowun Batang", serif; font-size: 26px; }
+.grade-card small { color: var(--muted); font-size: 13px; }
+.grade-card:hover { color: var(--white); background: var(--forest); transform: translateY(-3px); }
+.grade-card:hover span { color: var(--leaf); }
+.grade-card:hover small { color: rgba(255,255,255,.7); }
+.check-section, .faq-section { max-width: 1180px; margin: 0 auto; padding: 0 28px 105px; }
+.check-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 32px 0 0; padding: 0; list-style: none; }
+.check-list li { border: 1px solid var(--line); padding: 20px 22px; background: var(--white); font-weight: 600; }
+.check-list li::before { margin-right: 12px; color: #82920f; content: "✓"; }
+.faq-list { margin-top: 32px; border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0; font-size: 17px; font-weight: 700; cursor: pointer; list-style: none; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { color: #82920f; content: "+"; font-size: 22px; line-height: 1; }
+.faq-list details[open] summary::after { content: "−"; }
+.faq-list details p { margin: 0 0 24px; color: var(--muted); }
 .trial-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 45px; padding: 75px max(28px, calc((100vw - 1120px) / 2)); color: var(--white); background: var(--forest-deep); }
 .trial-band h2 { margin: 0; font-family: "Gowun Batang", serif; font-size: clamp(30px, 3.5vw, 44px); letter-spacing: 0; }
 .trial-band p { margin: 12px 0 0; color: rgba(255,255,255,.64); }
@@ -90,6 +112,10 @@ a { color: inherit; text-decoration: none; }
   .subarea-section { padding: 0 24px 80px; }
   .subarea-grid { grid-template-columns: repeat(2, 1fr); }
   .subarea-grid a { min-height: 64px; padding: 0 14px; }
+  .grade-section, .check-section, .faq-section { padding: 0 24px 80px; }
+  .grade-cards, .check-list { grid-template-columns: 1fr; }
+  .grade-card { min-height: 150px; }
+  .faq-list summary { font-size: 15px; }
   .trial-band { grid-template-columns: 1fr; padding: 65px 24px; }
   .trial-actions { flex-direction: column; }
   .category-hero { padding: 75px 24px 55px; }

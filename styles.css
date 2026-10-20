@@ -98,6 +98,8 @@ button { color: inherit; }
 .grade-description { margin: 15px 0 24px; color: var(--muted); font-size: 15px; }
 .grade-points { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; }
 .grade-points li::before { margin-right: 10px; color: #778713; content: "✓"; }
+.grade-link { display: inline-block; margin-top: 28px; border-bottom: 1px solid var(--forest); padding-bottom: 4px; color: var(--forest); font-size: 14px; font-weight: 700; }
+.grade-link span { margin-left: 8px; }
 
 .process { background: var(--white); }
 .process-heading { text-align: center; }
@@ -122,6 +124,15 @@ button { color: inherit; }
 .region-card:hover { color: var(--white); background: var(--forest); }
 .region-card:hover span, .region-card:hover small { color: rgba(255,255,255,.7); }
 .region-all-link { display: block; width: max-content; margin: 35px 0 0 auto; border-bottom: 1px solid var(--forest); padding-bottom: 6px; font-size: 13px; font-weight: 700; }
+
+.faq { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(320px, 1.2fr); column-gap: 10vw; background: var(--white); }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { display: flex; justify-content: space-between; gap: 20px; padding: 26px 0; font-size: 18px; font-weight: 700; cursor: pointer; list-style: none; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { color: #778713; content: "+"; font-size: 22px; line-height: 1; }
+.faq-list details[open] summary::after { content: "−"; }
+.faq-list details p { margin: 0 0 26px; color: var(--muted); }
 
 .consult { padding: 120px clamp(24px, 10vw, 170px); color: var(--white); background: var(--forest-deep); }
 .consult-copy { max-width: 680px; }
@@ -155,7 +166,8 @@ button { color: inherit; }
   .nav-cta { color: var(--forest-deep); font-size: 15px; }
   .hero { min-height: 760px; }
   .hero-content { margin-left: 8vw; }
-  .intro { grid-template-columns: 1fr; }
+  .intro, .faq { grid-template-columns: 1fr; }
+  .faq-list { margin-top: 40px; }
   .intro-body { margin-top: 40px; }
   .value-grid { grid-template-columns: 1fr; margin-top: 60px; }
   .value-item, .value-item + .value-item { padding: 34px 10px; border-right: 0; border-bottom: 1px solid var(--line); }
