@@ -196,7 +196,9 @@ def head(*, title, description, path, root, css, extra=""):
   <meta name="twitter:title" content="{title}">
   <meta name="twitter:description" content="{description}">
   <meta name="twitter:image" content="{OG_IMAGE}">
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="{root}assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
