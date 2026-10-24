@@ -100,6 +100,9 @@ button { color: inherit; }
 .grade-points li::before { margin-right: 10px; color: #778713; content: "✓"; }
 .grade-link { display: inline-block; margin-top: 28px; border-bottom: 1px solid var(--forest); padding-bottom: 4px; color: var(--forest); font-size: 14px; font-weight: 700; }
 .grade-link span { margin-left: 8px; }
+.grade-years { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.grade-years a { border: 1px solid var(--line); padding: 6px 12px; background: rgba(255,255,255,.5); color: var(--forest); font-size: 12px; font-weight: 600; }
+.grade-years a:hover { color: var(--white); background: var(--forest); }
 
 .process { background: var(--white); }
 .process-heading { text-align: center; }
