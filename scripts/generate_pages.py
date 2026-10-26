@@ -5,10 +5,14 @@
 - regions/{구군}/{학년}-math.html   : 구군 + 초등/중등/고등 수학과외 페이지
 - math/{학년}.html                  : 울산 전체 초등/중등/고등 수학과외 페이지
 - sitemap.xml
+- index.html, regions/{구군}.html 의 학교 목록 영역 (<!-- schools:start --> ~ <!-- schools:end -->)
+
+학교 목록은 data/ulsan-schools.json(전국초중등학교위치표준데이터에서 울산만 추출)을 사용합니다.
 
 사용법: python scripts/generate_pages.py
 """
 import json
+import re
 import shutil
 from datetime import date
 from pathlib import Path
@@ -19,6 +23,13 @@ PHONE = "010-2928-3614"
 TEL = "tel:01029283614"
 OG_IMAGE = "https://classfit.kr/assets/social-preview.png?v=20261008-1"
 TODAY = date.today().isoformat()
+
+SCHOOL_DATA = json.loads((ROOT / "data" / "ulsan-schools.json").read_text(encoding="utf-8"))
+SCHOOLS = SCHOOL_DATA["schools"]
+SCHOOL_SOURCE = "학교 정보 출처: 전국초중등학교위치표준데이터(공공데이터포털, 2026년 10월 기준)"
+LEVELS = ["초등학교", "중학교", "고등학교"]
+GU_ORDER = ["중구", "남구", "동구", "북구", "울주군"]
+SCHOOL_MARKER = re.compile(r"<!-- schools:start -->.*?<!-- schools:end -->", re.S)
 
 REGIONS = [
     {"name": "중구", "slug": "jung-gu", "type": "동", "areas": [
@@ -387,6 +398,124 @@ YEARS = [
 ]
 
 
+def schools_where(level=None, gu=None, dongs=None):
+    return sorted(
+        s["name"] for s in SCHOOLS
+        if (level is None or s["level"] == level)
+        and (gu is None or s["gu"] == gu)
+        and (dongs is None or s["dong"] in dongs)
+    )
+
+
+def school_section(title, intro, groups):
+    """groups: [(소제목, [학교명...])]. 비어 있는 그룹은 건너뜁니다."""
+    groups = [(label, names) for label, names in groups if names]
+    if not groups:
+        return ""
+    blocks = "".join(
+        f'<div class="school-group"><h3>{label} <small>{len(names)}곳</small></h3><ul class="school-list">'
+        + "".join(f"<li>{n}</li>" for n in names) + "</ul></div>"
+        for label, names in groups
+    )
+    return (f'<section class="school-section" id="schools"><h2>{title}</h2><p>{intro}</p>'
+            f'<div class="school-groups">{blocks}</div><p class="school-source">{SCHOOL_SOURCE}</p></section>')
+
+
+# 학교급별 본문 문구
+LEVEL_COPY = {
+    "초등학교": ("초등 수학", "학교 교과 진도와 학년별 학습 내용에 맞춰 1:1 초등 수학수업을 진행합니다."),
+    "중학교": ("중등 수학내신", "학교별 진도와 시험 범위, 서술형 출제 경향에 맞춰 1:1 중등 수학내신 대비를 진행합니다."),
+    "고등학교": ("고등 수학내신·수능", "학교별 편성 과목과 시험 범위에 맞춘 고등 수학내신 대비와 수능수학 준비를 1:1로 진행합니다."),
+}
+GRADE_LEVEL = {"elementary": "초등학교", "middle": "중학교", "high": "고등학교"}
+
+
+def level_of(page):
+    return GRADE_LEVEL.get(page.get("parent", page["key"]))
+
+
+def ulsan_level_schools(level, label):
+    names = schools_where(level)
+    return school_section(
+        f"울산 {level}별 {label} 수학과외",
+        f"울산 중구·남구·동구·북구·울주군 {level} {len(names)}곳 학생을 위한 {label} 수학과외입니다. {LEVEL_COPY[level][1]}",
+        [(f"울산 {gu}", schools_where(level, gu)) for gu in GU_ORDER],
+    )
+
+
+def region_level_schools(region, level, label):
+    names = schools_where(level, region["name"])
+    return school_section(
+        f"{region_label(region)} {level}별 {label} 수학과외",
+        f"{region_label(region)} {level} {len(names)}곳 학생을 위한 {label} 수학과외입니다. {LEVEL_COPY[level][1]}",
+        [(f"{region['name']} {level}", names)],
+    )
+
+
+def region_all_schools(region):
+    total = len(schools_where(gu=region["name"]))
+    return school_section(
+        f"{region_label(region)} 학교별 수학과외",
+        f"{region_label(region)} 초등학교·중학교·고등학교 {total}곳 학생을 대상으로, 학교 진도와 시험 일정에 맞춘 1:1 수학수업을 안내합니다.",
+        [(level, schools_where(level, region["name"])) for level in LEVELS],
+    )
+
+
+def legal_dongs(area_name):
+    """행정동 이름에서 같은 이름의 법정동을 찾습니다. 예: 신정1동 → 신정동, 야음장생포동 → 야음동·장생포동."""
+    if area_name == "야음장생포동":
+        return ["야음동", "장생포동"]
+    return [re.sub(r"\d+(?=동$)", "", area_name)]
+
+
+def area_schools(region, area_name):
+    dongs = legal_dongs(area_name)
+    label = "·".join(dongs)
+    total = len(schools_where(gu=region["name"], dongs=dongs))
+    if not total:
+        # 행정동과 이름이 같은 법정동이 없으면 구·군 전체 학교 목록으로 안내합니다.
+        return (f'<section class="school-section" id="schools"><h2>{area_name} 주변 학교 수학과외</h2>'
+                f'<p>{region_label(region)} 초등학교·중학교·고등학교 {len(schools_where(gu=region["name"]))}곳의 학교별 안내는 '
+                f'<a class="text-link" href="../{region["slug"]}.html#schools">{region_label(region)} 학교별 수학과외</a>에서 확인하세요.</p></section>')
+    return school_section(
+        f"{label} 일대 학교 수학과외",
+        f"{region_label(region)} {label}에 있는 초등학교·중학교·고등학교 {total}곳 학생을 위한 1:1 수학수업입니다. 학교 진도와 시험 범위를 확인해 수업을 준비합니다.",
+        [(level, schools_where(level, region["name"], dongs)) for level in LEVELS],
+    )
+
+
+def homepage_schools():
+    """홈페이지용: 학교급별로 접어 두고, 펼치면 구·군별 학교 목록이 보입니다."""
+    levels = "".join(
+        f'<details class="school-level"><summary>울산 {level} <small>{len(schools_where(level))}곳</small></summary>'
+        + "".join(
+            f'<div class="school-group"><h3>{gu}</h3><ul class="school-list">'
+            + "".join(f"<li>{n}</li>" for n in schools_where(level, gu)) + "</ul></div>"
+            for gu in GU_ORDER if schools_where(level, gu)
+        ) + "</details>"
+        for level in LEVELS
+    )
+    return (
+        '<section class="school-section section" id="schools"><div class="section-heading"><p class="eyebrow">ULSAN SCHOOLS</p>'
+        '<h2>울산 학교별<br>수학과외</h2></div><div class="school-body">'
+        f'<p>울산 초등학교·중학교·고등학교 {len(SCHOOLS)}곳 학생을 대상으로 학교 진도와 시험 일정에 맞춘 1:1 수학수업을 안내합니다.</p>'
+        f'{levels}<p class="school-source">{SCHOOL_SOURCE}</p></div></section>'
+    )
+
+
+def replace_schools_block(path, html, before):
+    """수작업 페이지의 학교 목록 영역을 갱신합니다. 표식이 없으면 before 앞에 새로 넣습니다."""
+    target = ROOT / path
+    text = target.read_text(encoding="utf-8")
+    block = f"<!-- schools:start -->{html}<!-- schools:end -->"
+    if SCHOOL_MARKER.search(text):
+        text = SCHOOL_MARKER.sub(lambda _: block, text)
+    else:
+        assert text.count(before) == 1, (path, before)
+        text = text.replace(before, block + "\n    " + before)
+    target.write_text(text, encoding="utf-8", newline="")
+
+
 def json_ld(data):
     return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False, separators=(",", ":"))}</script>'
 
@@ -482,7 +611,7 @@ def trial_band(heading):
     return f"""<section class="trial-band"><div><h2>{heading}</h2><p>전화 상담 후 학생에게 맞는 체험수업 방향을 안내해 드립니다.</p></div><div class="trial-actions"><a class="button button-primary" href="{TEL}">무료체험 전화 상담</a><a class="button button-outline" href="{TEL}">{PHONE}</a></div></section>"""
 
 
-def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links, local_links, local_title, cross_links, cross_title):
+def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links, local_links, local_title, cross_links, cross_title, schools_html=""):
     fmt = lambda s: s.replace("{R}", place)
     faqs = [(fmt(q), fmt(a)) for q, a in grade["faqs"]] + [COMMON_FAQ]
     stages = "".join(
@@ -499,6 +628,7 @@ def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links
     <section class="area-hero"><p class="eyebrow">{grade["eyebrow"]}</p><h1>{fmt(grade["h1"])}</h1><p>{fmt(grade["hero"])}</p><div class="hero-actions"><a class="button button-primary" href="{TEL}">무료체험 전화 상담</a><a class="button button-outline" href="#faq">자주 묻는 질문</a></div></section>
     <section class="content-section" id="stages"><div class="section-intro"><div><p class="eyebrow">CURRICULUM</p><h2>{grade["intro_h2"]}</h2></div><div><p>{fmt(grade["intro"])}</p></div></div><div class="feature-grid">{stages}</div></section>
     <section class="check-section"><h2>이런 학생에게 맞습니다</h2><ul class="check-list">{concerns}</ul></section>
+    {schools_html}
     <section class="faq-section" id="faq"><h2>{place} {grade["label"]} 수학과외 자주 묻는 질문</h2><div class="faq-list">{faq_html}</div></section>
     {trial_band(f"{place} {grade['label']} 수학과외,<br>무료체험수업으로 시작하세요.")}
     {links_block(f"{place} 학년별 수학과외", sibling_links)}
@@ -536,6 +666,7 @@ def area_page(region, area_name, area_slug):
       <div class="feature-grid"><article class="feature"><span>01 DIAGNOSIS</span><h3>현재 수준 진단</h3><p>개념 이해도와 문제 풀이 과정을 확인해 먼저 보완할 부분을 찾습니다.</p></article><article class="feature"><span>02 LESSON</span><h3>학년별 맞춤 수업</h3><p>초등 기초수학, 중등 수학내신, 고등 수능수학까지 목표에 맞게 수업의 순서와 속도를 정합니다.</p></article><article class="feature"><span>03 MANAGEMENT</span><h3>복습과 오답 관리</h3><p>수업 후 복습과 오답 점검으로 혼자 공부할 수 있는 학습 습관을 기릅니다.</p></article></div>
     </section>
     <section class="grade-section" id="grades"><h2>{area_name} 학년별 수학 수업</h2><p>{place} 초등·중등·고등 수학수업 안내를 확인하세요.</p><div class="grade-cards">{grade_cards}</div></section>
+    {area_schools(region, area_name)}
     {trial_band(f"{area_name} 수학과외,<br>무료체험수업으로 시작하세요.")}
     {links_block(f"{region['name']} 다른 {region['type']} 수학과외", area_links)}
   </main>
@@ -571,6 +702,7 @@ def main():
             local_links=[(f"울산 {y['label']} 수학과외", f"{y['key']}.html", False) for y in years],
             cross_title=f"구·군별 {grade['label']} 수학과외",
             cross_links=[(f"{region_label(r)} {grade['label']} 수학", f"../regions/{r['slug']}/{grade['key']}-math.html", False) for r in REGIONS],
+            schools_html=ulsan_level_schools(level_of(grade), grade["label"]),
         ))
 
     # 울산 전체 학년(중1, 고2 등) 세부 페이지
@@ -588,6 +720,7 @@ def main():
             cross_title=f"지역별 {parent['label']} 수학과외",
             cross_links=[(f"울산 전체 {parent['label']} 수학", f"{parent['key']}.html", False)]
             + [(f"{region_label(r)} {parent['label']} 수학", f"../regions/{r['slug']}/{parent['key']}-math.html", False) for r in REGIONS],
+            schools_html=ulsan_level_schools(level_of(year), year["label"]),
         ))
 
     for region in REGIONS:
@@ -612,6 +745,7 @@ def main():
                 + [(f"{region_label(r)} {grade['label']} 수학", f"../{r['slug']}/{grade['key']}-math.html", False) for r in REGIONS if r is not region]
                 + [(f"울산 {y['label']} 수학과외", f"../../math/{y['key']}.html", False)
                    for y in (years_of(grade["key"]) or [y for y in YEARS if y["key"] == "pre-middle-1"])],
+                schools_html=region_level_schools(region, level_of(grade), grade["label"]),
             ))
             grade_urls.append(path)
 
@@ -620,6 +754,11 @@ def main():
             path = f"regions/{region['slug']}/{area_slug}.html"
             write(path, area_page(region, area_name, area_slug))
             area_urls.append(path)
+
+    # 수작업 페이지(홈, 구·군 페이지)의 학교 목록 영역
+    replace_schools_block("index.html", homepage_schools(), '<section class="faq section" id="faq">')
+    for region in REGIONS:
+        replace_schools_block(f"regions/{region['slug']}.html", region_all_schools(region), '<section class="grade-section" id="grades">')
 
     urls += [(u, "monthly", "0.8") for u in grade_urls]
     urls += [(u, "monthly", "0.7") for u in area_urls]

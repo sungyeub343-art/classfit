@@ -128,6 +128,21 @@ button { color: inherit; }
 .region-card:hover span, .region-card:hover small { color: rgba(255,255,255,.7); }
 .region-all-link { display: block; width: max-content; margin: 35px 0 0 auto; border-bottom: 1px solid var(--forest); padding-bottom: 6px; font-size: 13px; font-weight: 700; }
 
+.school-section { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(320px, 1.2fr); column-gap: 10vw; background: var(--paper); }
+.school-body > p:first-child { margin: 0 0 28px; color: var(--muted); }
+.school-level { border-top: 1px solid var(--line); }
+.school-level:last-of-type { border-bottom: 1px solid var(--line); }
+.school-level summary { display: flex; justify-content: space-between; padding: 22px 0; font-size: 18px; font-weight: 700; cursor: pointer; list-style: none; }
+.school-level summary::-webkit-details-marker { display: none; }
+.school-level summary small { margin: 0 auto 0 8px; color: var(--muted); font-size: 13px; font-weight: 500; }
+.school-level summary::after { color: #778713; content: "+"; font-size: 22px; line-height: 1; }
+.school-level[open] summary::after { content: "−"; }
+.school-group { margin-bottom: 22px; }
+.school-group h3 { margin: 0 0 10px; font-size: 14px; }
+.school-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.school-list li { border: 1px solid var(--line); padding: 5px 11px; background: var(--white); font-size: 12px; }
+.school-source { margin: 20px 0 0; color: #8b958e; font-size: 11px; }
+
 .faq { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(320px, 1.2fr); column-gap: 10vw; background: var(--white); }
 .faq-list { border-top: 1px solid var(--line); }
 .faq-list details { border-bottom: 1px solid var(--line); }
@@ -169,7 +184,8 @@ button { color: inherit; }
   .nav-cta { color: var(--forest-deep); font-size: 15px; }
   .hero { min-height: 760px; }
   .hero-content { margin-left: 8vw; }
-  .intro, .faq { grid-template-columns: 1fr; }
+  .intro, .faq, .school-section { grid-template-columns: 1fr; }
+  .school-body { margin-top: 40px; }
   .faq-list { margin-top: 40px; }
   .intro-body { margin-top: 40px; }
   .value-grid { grid-template-columns: 1fr; margin-top: 60px; }
