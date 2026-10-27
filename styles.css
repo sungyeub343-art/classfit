@@ -127,6 +127,10 @@ button { color: inherit; }
 .region-card:hover { color: var(--white); background: var(--forest); }
 .region-card:hover span, .region-card:hover small { color: rgba(255,255,255,.7); }
 .region-all-link { display: block; width: max-content; margin: 35px 0 0 auto; border-bottom: 1px solid var(--forest); padding-bottom: 6px; font-size: 13px; font-weight: 700; }
+.topic-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+.topic-links strong { margin-right: 10px; font-size: 14px; }
+.topic-links a { border: 1px solid var(--line); padding: 8px 14px; background: var(--white); font-size: 13px; }
+.topic-links a:hover { color: var(--white); background: var(--forest); }
 
 .school-section { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(320px, 1.2fr); column-gap: 10vw; background: var(--paper); }
 .school-body > p:first-child { margin: 0 0 28px; color: var(--muted); }

@@ -398,6 +398,151 @@ YEARS = [
 ]
 
 
+# 목적별 페이지 (math/{key}.html). name은 FAQ 제목과 하단 안내 문구에 쓰입니다.
+TOPICS = [
+    {
+        "key": "winter-break", "label": "겨울방학", "name": "{R} 겨울방학 수학과외", "eyebrow": "WINTER BREAK MATH",
+        "title": "{R} 겨울방학 수학과외 | 초등·중등·고등 방학 수학 복습·예습 1:1",
+        "description": "{R} 겨울방학 수학과외. 지난 학년 수학 빈틈 복습과 새 학년 예습을 학생 수준에 맞춰 설계하는 초등·중등·고등 1:1 방학 수학수업과 무료체험수업을 안내합니다.",
+        "h1": "<em>{R} 겨울방학 수학과외</em><br>새 학년을 준비하는 시간",
+        "hero": "{R} 학생의 지난 학년 수학 이해도를 점검하고, 겨울방학 동안 복습과 새 학년 예습의 비중을 학생에게 맞춰 설계하는 1:1 수학수업입니다.",
+        "intro_h2": "겨울방학 수학공부,<br>복습이 먼저입니다.",
+        "intro": "<strong>{R} 겨울방학 수학</strong>은 학기 중에 놓친 개념을 채우고 새 학년을 미리 준비할 수 있는 가장 긴 시간입니다. 지난 학년의 빈틈을 먼저 진단하고, 학생 속도에 맞춰 다음 학년 1학기 내용을 예습하며, 방학 동안 매일 공부하는 습관을 함께 만듭니다.",
+        "stages": [
+            ("STEP 1", "지난 학년 빈틈 진단", "지난 학년 단원별로 개념 이해도와 계산 정확도를 점검해, 새 학년 전에 꼭 채워야 할 부분을 찾습니다."),
+            ("STEP 2", "새 학년 1학기 예습", "다음 학년 1학기 핵심 단원을 학생 속도에 맞춰 미리 익혀, 새 학기 수업을 자신 있게 시작하도록 돕습니다."),
+            ("STEP 3", "방학 공부 루틴", "수업과 과제, 복습 점검을 주 단위로 계획해 방학 동안 공부 흐름이 끊기지 않게 관리합니다."),
+        ],
+        "concerns": [
+            "지난 학년 수학 성적이 아쉬웠던 학생",
+            "새 학년 수학을 미리 준비하고 싶은 학생",
+            "예비중1·예비고1처럼 학교급이 바뀌는 학생",
+            "방학만 되면 공부 습관이 무너지는 학생",
+        ],
+        "faqs": [
+            ("겨울방학 수학은 복습과 예습 중 무엇을 먼저 해야 하나요?",
+             "지난 학년에 빈틈이 있다면 복습을 먼저 권합니다. 다음 학년 수학은 이전 학년 개념 위에 쌓이기 때문입니다. 진단 결과에 따라 복습과 예습의 비중을 정합니다."),
+            ("겨울방학 동안 어느 정도 진도를 나갈 수 있나요?",
+             "학생의 현재 수준과 수업 횟수에 따라 다릅니다. 무리하게 범위를 넓히기보다, 다음 학년 1학기 핵심 단원을 충분히 이해하는 것을 기본 목표로 합니다."),
+            ("겨울방학에만 수업을 받을 수도 있나요?",
+             "가능 여부와 수업 일정은 전화 상담에서 학생 상황을 듣고 안내해 드립니다."),
+        ],
+    },
+    {
+        "key": "exam-prep", "label": "내신대비", "name": "{R} 수학 내신대비 과외", "eyebrow": "SCHOOL EXAM PREP",
+        "title": "{R} 수학 내신대비 과외 | 중간고사·기말고사 학교별 시험 준비 1:1",
+        "description": "{R} 수학 내신대비 과외. 학교별 시험 범위와 출제 경향, 기출과 서술형까지 중학교·고등학교 중간고사·기말고사 수학 내신을 1:1로 준비합니다.",
+        "h1": "<em>{R} 수학 내신대비 과외</em><br>학교별 시험에 맞춰 준비합니다",
+        "hero": "{R} 중학생·고등학생의 학교 시험 범위와 출제 경향을 확인하고, 시험일까지 남은 기간에 맞춘 1:1 수학 내신대비 계획을 세웁니다.",
+        "intro_h2": "수학 내신,<br>학교마다 준비가 다릅니다.",
+        "intro": "<strong>{R} 수학 내신대비</strong>는 다니는 학교의 교과서, 부교재, 학교 프린트와 기출 경향을 기준으로 해야 합니다. 시험 범위 개념 정리, 유형별 문제 연습, 서술형 풀이 쓰기, 실전 시간 훈련 순서로 중간고사와 기말고사를 준비합니다.",
+        "stages": [
+            ("4~5주 전", "범위 개념 정리", "시험 범위 단원의 개념과 공식을 정리하고, 학생이 자주 틀리는 부분을 먼저 확인합니다."),
+            ("2~3주 전", "유형·기출 연습", "교과서와 부교재, 학교 기출 유형을 중심으로 문제를 풀고 오답을 분석합니다."),
+            ("시험 직전", "서술형·실전 훈련", "서술형 풀이 과정을 점검하고, 실제 시험 시간에 맞춰 풀어 보며 실수를 줄입니다."),
+        ],
+        "concerns": [
+            "공부한 만큼 수학 시험 점수가 나오지 않는 학생",
+            "서술형 문제에서 감점이 많은 학생",
+            "시험 시간이 부족해 마지막 문제를 못 푸는 학생",
+            "학교 기출 경향을 모르고 시험을 준비하는 학생",
+        ],
+        "faqs": [
+            ("수학 내신대비는 시험 몇 주 전부터 시작하면 좋을까요?",
+             "학교와 시험 범위에 따라 다르지만 보통 4~5주 전부터 범위를 정리하기 시작합니다. 평소에 개념을 꾸준히 다져 두면 시험 기간에 유형 연습과 실전 훈련에 더 많은 시간을 쓸 수 있습니다."),
+            ("학교마다 시험이 다른데 어떻게 대비하나요?",
+             "상담에서 학교와 학년, 시험 범위를 확인하고 교과서와 부교재, 학교 프린트, 학생이 가진 기출 자료를 바탕으로 수업을 준비합니다."),
+            ("시험 기간에만 내신대비 수업을 받을 수 있나요?",
+             "가능 여부와 수업 일정은 전화 상담에서 학교 시험 일정과 학생 상황을 듣고 안내해 드립니다."),
+        ],
+    },
+    {
+        "key": "basic-math", "label": "기초수학", "name": "{R} 기초수학 과외", "eyebrow": "BASIC MATH",
+        "title": "{R} 기초수학 과외 | 수학 기초부터 다시 잡는 초등·중등·고등 1:1",
+        "description": "{R} 기초수학 과외. 수학이 어렵고 기초가 부족한 초등·중등·고등 학생을 위해 막히기 시작한 단원부터 다시 짚는 1:1 기초 수학수업과 무료체험수업을 안내합니다.",
+        "h1": "<em>{R} 기초수학 과외</em><br>막힌 곳부터 다시 시작합니다",
+        "hero": "{R} 학생이 수학에서 막히기 시작한 지점을 찾아, 그 단원부터 현재 학년까지 다시 연결하는 1:1 기초수학 수업입니다.",
+        "intro_h2": "수학 기초,<br>처음부터가 아니라 빈틈부터",
+        "intro": "<strong>{R} 기초수학</strong> 수업은 모든 것을 처음부터 다시 하지 않습니다. 진단으로 개념이 끊어진 지점을 찾고, 현재 학년 단원에 꼭 필요한 이전 개념만 골라 채운 뒤 지금 배우는 내용으로 돌아옵니다. 작은 성공을 쌓으며 수학 자신감도 함께 회복합니다.",
+        "stages": [
+            ("진단", "막힌 지점 찾기", "현재 학년 문제부터 이전 학년 개념까지 거슬러 올라가며 이해가 끊어진 지점을 찾습니다."),
+            ("보완", "필요한 개념만 채우기", "연산, 분수, 문자와 식, 방정식, 함수처럼 현재 단원에 필요한 이전 개념을 골라 다시 익힙니다."),
+            ("연결", "현재 진도로 복귀", "보완한 개념을 현재 학년 단원과 연결해, 학교 수업을 다시 따라갈 수 있게 돕습니다."),
+        ],
+        "concerns": [
+            "수학 시간에 무엇을 모르는지조차 모르겠다는 학생",
+            "계산은 되는데 문장으로 된 문제를 어려워하는 학생",
+            "학년이 올라갈수록 수학 성적이 계속 떨어지는 학생",
+            "수학을 포기하고 싶다고 말하는 학생",
+        ],
+        "faqs": [
+            ("기초가 많이 부족한데 처음부터 다시 해야 하나요?",
+             "처음부터 다시 하면 현재 학년 진도에 뒤처지기 쉽습니다. 진단으로 꼭 필요한 이전 개념만 골라 보완하고, 현재 진도와 병행하는 방식을 권합니다."),
+            ("고등학생인데 중학교 수학이 부족해도 괜찮을까요?",
+             "고등 수학에 바로 쓰이는 중등 개념을 골라 빠르게 보완합니다. 특히 식의 계산, 인수분해, 일차·이차함수를 우선 점검합니다."),
+            ("수학을 싫어하는 아이도 따라갈 수 있을까요?",
+             "학생이 풀 수 있는 수준의 문제부터 시작해 작은 성공을 쌓도록 수업을 구성합니다. 이해하는 경험이 쌓이면 수학에 대한 부담도 줄어듭니다."),
+        ],
+    },
+    {
+        "key": "advanced", "label": "선행", "name": "{R} 수학 선행 과외", "eyebrow": "ADVANCED LEARNING",
+        "title": "{R} 수학 선행 과외 | 학생 속도에 맞춘 초등·중등·고등 수학 선행 1:1",
+        "description": "{R} 수학 선행 과외. 현재 학년 개념 이해를 확인한 뒤 학생 속도에 맞춰 다음 학기와 다음 학년 수학을 준비하는 초등·중등·고등 1:1 선행 수학수업을 안내합니다.",
+        "h1": "<em>{R} 수학 선행 과외</em><br>이해를 확인하며 앞서갑니다",
+        "hero": "{R} 학생의 현재 학년 개념 이해도를 먼저 확인하고, 학생이 소화할 수 있는 속도로 다음 학기와 다음 학년 수학을 준비하는 1:1 선행 수업입니다.",
+        "intro_h2": "수학 선행,<br>속도보다 이해입니다.",
+        "intro": "<strong>{R} 수학 선행</strong>은 진도를 빨리 나가는 것보다 앞서 배운 내용을 정확히 이해하는 것이 중요합니다. 현재 학년 개념이 충분한지 먼저 확인하고, 학생의 이해 속도에 맞춰 선행 범위를 정하며, 선행한 내용이 학교 수업과 내신으로 이어지도록 복습을 함께 관리합니다.",
+        "stages": [
+            ("확인", "현재 학년 이해 점검", "선행을 시작하기 전에 현재 학년 핵심 개념이 충분히 이해되었는지 확인합니다."),
+            ("선행", "학생 속도에 맞춘 진도", "다음 학기와 다음 학년 단원을 학생이 소화할 수 있는 속도로 개념부터 차근차근 익힙니다."),
+            ("복습", "선행 내용 다시 보기", "학교에서 같은 단원을 배울 때 다시 복습해 선행한 내용이 내신 실력으로 이어지게 합니다."),
+        ],
+        "concerns": [
+            "현재 학년 내용을 이미 잘 이해하고 있는 학생",
+            "다음 학년 수학을 미리 준비하고 싶은 학생",
+            "선행을 했지만 막상 시험에서 성적이 나오지 않는 학생",
+            "선행 범위와 속도를 상담받고 싶은 학부모님",
+        ],
+        "faqs": [
+            ("수학 선행은 어느 정도까지 하는 것이 좋을까요?",
+             "학생의 이해 속도와 목표에 따라 다릅니다. 보통 다음 학기나 다음 학년 내용을 충분히 이해하는 것을 먼저 목표로 하고, 이해도를 확인하며 범위를 넓혀 갑니다."),
+            ("선행을 했는데 왜 시험 성적이 오르지 않을까요?",
+             "진도는 나갔지만 개념을 정확히 이해하지 못했거나, 문제를 충분히 풀어 보지 않은 경우가 많습니다. 선행한 단원의 이해도를 다시 점검하고 부족한 부분을 보완합니다."),
+            ("현재 학년이 부족한데 선행을 해도 될까요?",
+             "현재 학년 개념에 빈틈이 있다면 그 부분을 먼저 채우는 것을 권합니다. 다음 학년 수학은 현재 학년 개념 위에 쌓이기 때문입니다."),
+        ],
+    },
+    {
+        "key": "academy-vs-tutoring", "label": "학원 비교", "name": "{R} 1:1 수학과외", "eyebrow": "ACADEMY OR TUTORING",
+        "title": "{R} 수학학원 vs 1:1 수학과외 | 우리 아이에게 맞는 수업 고르기",
+        "description": "{R} 수학학원과 1:1 수학과외는 무엇이 다를까요? 수업 방식, 진도, 관리 방식을 비교하고 우리 아이에게 맞는 수학 수업을 고르는 기준을 안내합니다.",
+        "h1": "<em>{R} 수학학원 vs 1:1 수학과외</em><br>우리 아이에게 맞는 수업은?",
+        "hero": "{R}에서 수학학원과 1:1 수학과외 사이에서 고민하는 학부모님을 위해, 두 수업 방식의 차이와 학생에게 맞는 선택 기준을 정리했습니다.",
+        "intro_h2": "수학학원과 과외,<br>정답은 학생에게 있습니다.",
+        "intro": "<strong>{R} 수학학원</strong>은 정해진 커리큘럼과 진도에 따라 여러 학생이 함께 수업하고, <strong>1:1 수학과외</strong>는 한 학생의 수준과 속도에 맞춰 수업을 설계합니다. 어느 쪽이 더 좋다기보다, 학생의 현재 수준과 공부 습관, 목표에 따라 맞는 방식이 다릅니다.",
+        "stages": [
+            ("진도", "정해진 진도 vs 학생 속도", "학원은 반 진도에 맞춰 수업하고, 1:1 과외는 학생이 이해하는 속도에 맞춰 진도를 조절합니다."),
+            ("피드백", "질문과 풀이 확인", "1:1 수업에서는 학생의 풀이 과정을 바로 확인해, 막히는 지점과 반복되는 실수를 그 자리에서 바로잡습니다."),
+            ("관리", "학생별 학습 계획", "1:1 과외는 학교 시험 범위, 취약 단원, 과제와 복습까지 한 학생에게 맞춘 계획으로 관리합니다."),
+        ],
+        "concerns": [
+            "학원 진도를 따라가기 버거워하는 학생",
+            "학원에서 질문하기 어려워하는 학생",
+            "학원 진도가 너무 느리다고 느끼는 학생",
+            "학교 시험 범위에 맞춘 개별 관리가 필요한 학생",
+        ],
+        "faqs": [
+            ("1:1 수학과외가 수학학원보다 무조건 좋은가요?",
+             "그렇지 않습니다. 스스로 공부하는 습관이 잡혀 있고 반 진도를 잘 따라가는 학생에게는 학원이 잘 맞을 수 있습니다. 개념의 빈틈이 크거나 개별 관리가 필요한 학생에게는 1:1 과외가 효과적인 경우가 많습니다."),
+            ("학원과 과외를 함께 해도 되나요?",
+             "학원에서 진도를 나가고 과외에서 부족한 부분을 보완하는 방식도 있습니다. 다만 학습량이 많아질 수 있으므로 학생의 일정과 복습 시간을 함께 고려해야 합니다."),
+            ("우리 아이에게 무엇이 맞는지 어떻게 알 수 있나요?",
+             "현재 성적보다 학생이 어디에서 막히는지, 질문을 편하게 하는지, 스스로 복습하는지를 살펴보는 것이 좋습니다. 전화 상담에서 학생 상황을 들어 보고 함께 판단해 드립니다."),
+        ],
+    },
+]
+
+
 def schools_where(level=None, gu=None, dongs=None):
     return sorted(
         s["name"] for s in SCHOOLS
@@ -611,7 +756,7 @@ def trial_band(heading):
     return f"""<section class="trial-band"><div><h2>{heading}</h2><p>전화 상담 후 학생에게 맞는 체험수업 방향을 안내해 드립니다.</p></div><div class="trial-actions"><a class="button button-primary" href="{TEL}">무료체험 전화 상담</a><a class="button button-outline" href="{TEL}">{PHONE}</a></div></section>"""
 
 
-def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links, local_links, local_title, cross_links, cross_title, schools_html=""):
+def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links, local_links, local_title, cross_links, cross_title, schools_html="", sibling_title=""):
     fmt = lambda s: s.replace("{R}", place)
     faqs = [(fmt(q), fmt(a)) for q, a in grade["faqs"]] + [COMMON_FAQ]
     stages = "".join(
@@ -620,6 +765,7 @@ def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links
     concerns = "".join(f"<li>{c}</li>" for c in grade["concerns"])
     faq_html = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs)
     title = fmt(grade["title"])
+    name = fmt(grade.get("name", f"{place} {grade['label']} 수학과외"))
     return f"""{head(title=title, description=fmt(grade["description"]), path=path, root=root, css=css,
                  extra=breadcrumb_ld(crumb_ld) + faq_ld(faqs))}
 {header(root, [("지역별 안내", crumbs[1][1]), ("학년별 수업", "#stages")])}
@@ -629,9 +775,9 @@ def grade_page(grade, *, place, path, root, css, crumbs, crumb_ld, sibling_links
     <section class="content-section" id="stages"><div class="section-intro"><div><p class="eyebrow">CURRICULUM</p><h2>{grade["intro_h2"]}</h2></div><div><p>{fmt(grade["intro"])}</p></div></div><div class="feature-grid">{stages}</div></section>
     <section class="check-section"><h2>이런 학생에게 맞습니다</h2><ul class="check-list">{concerns}</ul></section>
     {schools_html}
-    <section class="faq-section" id="faq"><h2>{place} {grade["label"]} 수학과외 자주 묻는 질문</h2><div class="faq-list">{faq_html}</div></section>
-    {trial_band(f"{place} {grade['label']} 수학과외,<br>무료체험수업으로 시작하세요.")}
-    {links_block(f"{place} 학년별 수학과외", sibling_links)}
+    <section class="faq-section" id="faq"><h2>{name} 자주 묻는 질문</h2><div class="faq-list">{faq_html}</div></section>
+    {trial_band(f"{name},<br>무료체험수업으로 시작하세요.")}
+    {links_block(sibling_title or f"{place} 학년별 수학과외", sibling_links)}
     {links_block(local_title, local_links) if local_links else ""}
     {links_block(cross_title, cross_links)}
   </main>
@@ -683,6 +829,7 @@ def main():
     urls = [("", "weekly", "1.0"), ("regions/", "monthly", "0.9")]
     urls += [(f"math/{g['key']}.html", "monthly", "0.9") for g in GRADES]
     urls += [(f"math/{y['key']}.html", "monthly", "0.8") for y in YEARS]
+    urls += [(f"math/{t['key']}.html", "monthly", "0.8") for t in TOPICS]
     urls += [(f"regions/{r['slug']}.html", "monthly", "0.8") for r in REGIONS]
     grade_urls, area_urls = [], []
     years_of = lambda key: [y for y in YEARS if y["parent"] == key]
@@ -703,6 +850,22 @@ def main():
             cross_title=f"구·군별 {grade['label']} 수학과외",
             cross_links=[(f"{region_label(r)} {grade['label']} 수학", f"../regions/{r['slug']}/{grade['key']}-math.html", False) for r in REGIONS],
             schools_html=ulsan_level_schools(level_of(grade), grade["label"]),
+        ))
+
+    # 목적별 페이지 (겨울방학, 내신대비 등)
+    for topic in TOPICS:
+        path = f"math/{topic['key']}.html"
+        name = topic["name"].replace("{R}", "울산")
+        write(path, grade_page(
+            topic, place="울산", path=path, root="../", css="../regions/region-styles.css",
+            crumbs=[("홈", "../"), ("지역별 수학과외", "../regions/"), (name, None)],
+            crumb_ld=[("홈", ""), ("지역별 수학과외", "regions/"), (name, path)],
+            sibling_title="울산 목적별 수학과외",
+            sibling_links=[(t["name"].replace("{R}", "울산"), f"{t['key']}.html", t is topic) for t in TOPICS],
+            local_title="울산 학년별 수학과외",
+            local_links=[(f"울산 {g['label']} 수학과외", f"{g['key']}.html", False) for g in GRADES],
+            cross_title="학년별 세부 안내",
+            cross_links=[(f"울산 {y['label']} 수학과외", f"{y['key']}.html", False) for y in YEARS],
         ))
 
     # 울산 전체 학년(중1, 고2 등) 세부 페이지
@@ -767,7 +930,7 @@ def main():
         for u, f, p in urls
     )
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{entries}\n</urlset>\n')
-    print(f"Generated {len(GRADES)} Ulsan grade pages, {len(YEARS)} Ulsan year pages, {len(grade_urls)} region grade pages, {len(area_urls)} area pages, {len(urls)} sitemap URLs.")
+    print(f"Generated {len(GRADES)} Ulsan grade pages, {len(YEARS)} Ulsan year pages, {len(TOPICS)} topic pages, {len(grade_urls)} region grade pages, {len(area_urls)} area pages, {len(urls)} sitemap URLs.")
 
 
 if __name__ == "__main__":
