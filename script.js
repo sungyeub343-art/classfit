@@ -1,14 +1,14 @@
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".primary-nav");
 const regionSelector = document.querySelector("#region-selector");
-// 방문 세션당 한 번만 지역 선택 창을 띄움 (사이트 안에서 둘러볼 때는 다시 뜨지 않음)
+// 주소를 직접 입력해 들어온 첫 방문에만 지역 선택 창을 띄움.
+// 검색 결과나 다른 사이트에서 들어온 방문자에게는 본문을 가리지 않도록 띄우지 않음.
 let regionSelectorSeen = false;
 try {
   regionSelectorSeen = sessionStorage.getItem("regionSelectorSeen") === "1";
   sessionStorage.setItem("regionSelectorSeen", "1");
 } catch {}
-const cameFromSite = document.referrer && new URL(document.referrer).origin === window.location.origin;
-if (!regionSelectorSeen && !cameFromSite) {
+if (!regionSelectorSeen && !document.referrer) {
   regionSelector.showModal();
 }
 

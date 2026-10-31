@@ -11,10 +11,14 @@
 
 사용법: python scripts/generate_pages.py
 """
+import hashlib
 import json
 import re
 import shutil
-from datetime import date
+import subprocess
+from datetime import date, datetime, time, timedelta, timezone
+from email.utils import format_datetime
+from xml.sax.saxutils import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -959,6 +963,65 @@ def area_page(region, area_name, area_slug):
 {footer(root)}"""
 
 
+LASTMOD_STATE = ROOT / "data" / "page-lastmod.json"
+
+
+def page_file(url_path):
+    return ROOT / (url_path + "index.html" if url_path == "" or url_path.endswith("/") else url_path)
+
+
+def committed_date(url_path, digest):
+    """기록이 없는 페이지: 마지막 커밋과 내용이 같으면 그 커밋 날짜, 아니면 오늘 날짜."""
+    rel = page_file(url_path).relative_to(ROOT).as_posix()
+    run = lambda *args: subprocess.run(["git", *args], cwd=ROOT, capture_output=True).stdout
+    committed = run("show", f"HEAD:{rel}")
+    if committed and hashlib.sha256(committed.replace(b"\r\n", b"\n")).hexdigest() == digest:
+        return run("log", "-1", "--format=%cs", "--", rel).decode().strip() or TODAY
+    return TODAY
+
+
+def page_lastmods(url_paths):
+    """페이지 내용이 바뀐 경우에만 lastmod를 오늘 날짜로 갱신합니다 (data/page-lastmod.json에 기록)."""
+    state = json.loads(LASTMOD_STATE.read_text(encoding="utf-8")) if LASTMOD_STATE.exists() else {}
+    result = {}
+    for url_path in url_paths:
+        digest = hashlib.sha256(page_file(url_path).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        saved = state.get(url_path)
+        if not saved:
+            saved = {"hash": digest, "lastmod": committed_date(url_path, digest)}
+        elif saved["hash"] != digest:
+            saved = {"hash": digest, "lastmod": TODAY}
+        state[url_path] = saved
+        result[url_path] = saved["lastmod"]
+    LASTMOD_STATE.write_text(json.dumps(dict(sorted(state.items())), ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
+    return result
+
+
+def write_rss(url_paths, lastmods):
+    items = []
+    for url_path in url_paths:
+        text = page_file(url_path).read_text(encoding="utf-8")
+        title = re.search(r"<title>(.*?)</title>", text, re.S).group(1).strip()
+        description = re.search(r'<meta name="description" content="([^"]*)"', text).group(1)
+        pub_date = format_datetime(datetime.combine(date.fromisoformat(lastmods[url_path]), time(9), timezone(timedelta(hours=9))))
+        items.append(
+            f"    <item>\n      <title>{escape(title)}</title>\n      <link>{SITE}{url_path}</link>\n"
+            f"      <guid>{SITE}{url_path}</guid>\n      <description>{escape(description)}</description>\n"
+            f"      <pubDate>{pub_date}</pubDate>\n    </item>"
+        )
+    write("rss.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>울산 수학과외</title>
+    <link>{SITE}</link>
+    <description>울산 초등·중등·고등 1:1 수학과외 지역별·학년별·목적별 안내</description>
+    <language>ko</language>
+{chr(10).join(items)}
+  </channel>
+</rss>
+""")
+
+
 def write(path, text):
     target = ROOT / path
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -1080,11 +1143,14 @@ def main():
 
     urls += [(u, "monthly", "0.8") for u in grade_urls]
     urls += [(u, "monthly", "0.7") for u in area_urls]
+    lastmods = page_lastmods([u for u, _, _ in urls])
     entries = "\n".join(
-        f"  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{TODAY}</lastmod>\n    <changefreq>{f}</changefreq>\n    <priority>{p}</priority>\n  </url>"
+        f"  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{lastmods[u]}</lastmod>\n    <changefreq>{f}</changefreq>\n    <priority>{p}</priority>\n  </url>"
         for u, f, p in urls
     )
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{entries}\n</urlset>\n')
+    # 네이버 서치어드바이저 RSS 제출용: 홈, 구·군, 학년·목적별 페이지
+    write_rss([u for u, _, p in urls if p != "0.7"], lastmods)
     print(f"Generated {len(GRADES)} Ulsan grade pages, {len(YEARS)} Ulsan year pages, {len(TOPICS)} topic pages, {len(grade_urls)} region grade pages, {len(area_urls)} area pages, {len(urls)} sitemap URLs.")
 
 
